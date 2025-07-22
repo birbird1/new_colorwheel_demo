@@ -41,12 +41,14 @@
   color: #888;
 }
 
-/* 컬러 휠 데모용 스타일 */
+/* 컬러 휠 데모용 스타일 - 캐시 무효화를 위한 강제 업데이트 */
 .container {
   max-width: 400px;
   margin: 0 auto;
   padding: 3rem 0.5rem;
   text-align: center;
+  /* 강제 캐시 무효화 */
+  content: "updated-2024-01-27";
 }
 h1 {
   font-size: 1.3rem;
@@ -80,21 +82,36 @@ h1 {
   margin: 5rem 0 0 0;
   padding: 2rem 0;
   font-size: 1rem;
-  border: 2px solid #007bff;
-  border-radius: 12px;
-  background-color: #f8f9fa;
+  border: 3px solid #ff0000 !important;
+  border-radius: 15px !important;
+  background-color: #fff3cd !important;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3) !important;
+  position: relative;
+}
+.send-area::before {
+  content: "🔥 CLICK HERE 🔥";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff0000;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 .send-area:hover {
-  background-color: #e3f2fd;
-  border-color: #0056b3;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+  background-color: #ffeaa7 !important;
+  border-color: #cc0000 !important;
+  box-shadow: 0 6px 16px rgba(255, 0, 0, 0.4) !important;
+  transform: scale(1.02);
 }
 .send-area:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 4px rgba(0, 123, 255, 0.2);
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4) !important;
 }
 @media (max-width: 600px) {
   .container {
@@ -117,21 +134,22 @@ h1 {
     font-size: 0.95rem;
     padding: 2rem 0;
     margin-top: 5rem;
-    border: 2px solid #007bff;
-    border-radius: 10px;
-    background-color: #f8f9fa;
+    border: 3px solid #ff0000 !important;
+    border-radius: 12px !important;
+    background-color: #fff3cd !important;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3) !important;
   }
   .send-area:hover {
-    background-color: #e3f2fd;
-    border-color: #0056b3;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+    background-color: #ffeaa7 !important;
+    border-color: #cc0000 !important;
+    box-shadow: 0 6px 16px rgba(255, 0, 0, 0.4) !important;
+    transform: scale(1.02);
   }
   .send-area:active {
-    transform: translateY(1px);
-    box-shadow: 0 1px 4px rgba(0, 123, 255, 0.2);
+    transform: translateY(2px) scale(0.98);
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4) !important;
   }
 }
 
