@@ -41,24 +41,58 @@
   color: #888;
 }
 
-/* 컬러 휠 데모용 스타일 - 캐시 무효화를 위한 강제 업데이트 */
+/* 강한 원형 팡 터지는 효과 */
+@keyframes explosion {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0.9;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+.explosion-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  z-index: 9999;
+  border-radius: 50%;
+  transform-origin: center;
+  animation: explosion 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  pointer-events: none;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+}
+
+/* 컬러 휠 데모용 스타일 - 한 화면에 모든 요소가 보이도록 조정 */
 .container {
   max-width: 400px;
   margin: 0 auto;
-  padding: 3rem 0.5rem;
+  padding: 1rem 0.5rem;
   text-align: center;
-  /* 강제 캐시 무효화 */
-  content: "updated-2024-01-27";
+  position: relative;
 }
 h1 {
   font-size: 1.3rem;
   font-weight: 700;
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
   letter-spacing: -0.5px;
   word-break: keep-all;
+  color: #333;
 }
 .chameleon-area {
-  margin: 0 auto 4rem auto;
+  margin: 0 auto 1.5rem auto;
   width: 100px;
   height: 100px;
   display: flex;
@@ -72,84 +106,77 @@ h1 {
   z-index: 0;
 }
 .color-picker-area {
-  margin: 3rem 0 3rem 0;
+  margin: 1rem 0 1rem 0;
 }
 .color-value {
-  margin-top: 3rem;
+  margin-top: 1rem;
   font-size: 1rem;
+  color: #333;
 }
 .send-area {
-  margin: 5rem 0 0 0;
-  padding: 2rem 0;
+  margin: 1.5rem 0 0 0;
+  padding: 1rem 0;
   font-size: 1rem;
-  border: 3px solid #ff0000 !important;
-  border-radius: 15px !important;
-  background-color: #fff3cd !important;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #000000;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3) !important;
-  position: relative;
-}
-.send-area::before {
-  content: "🔥 CLICK HERE 🔥";
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ff0000;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: bold;
+  font-weight: 500;
 }
 .send-area:hover {
-  background-color: #ffeaa7 !important;
-  border-color: #cc0000 !important;
-  box-shadow: 0 6px 16px rgba(255, 0, 0, 0.4) !important;
-  transform: scale(1.02);
+  background-color: #f8f9fa;
+  border-color: #333333;
 }
 .send-area:active {
-  transform: translateY(2px) scale(0.98);
-  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4) !important;
+  transform: translateY(1px);
+}
+.send-area.sent {
+  background-color: #e8f5e8;
+  border-color: #28a745;
+  color: #28a745;
 }
 @media (max-width: 600px) {
   .container {
     max-width: 100vw;
-    padding: 2.5rem 0.3rem;
+    padding: 0.8rem 0.3rem;
   }
   h1 {
     font-size: 1.05rem;
-    margin-bottom: 4rem;
+    margin-bottom: 1.2rem;
   }
   .chameleon-area {
     width: 80px;
     height: 80px;
-    margin-bottom: 4rem;
+    margin-bottom: 1.2rem;
   }
   .color-picker-area {
-    margin: 3rem 0 3rem 0;
+    margin: 0.8rem 0 0.8rem 0;
   }
   .send-area {
     font-size: 0.95rem;
-    padding: 2rem 0;
-    margin-top: 5rem;
-    border: 3px solid #ff0000 !important;
-    border-radius: 12px !important;
-    background-color: #fff3cd !important;
+    padding: 0.8rem 0;
+    margin-top: 1.2rem;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #000000;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3) !important;
+    font-weight: 500;
   }
   .send-area:hover {
-    background-color: #ffeaa7 !important;
-    border-color: #cc0000 !important;
-    box-shadow: 0 6px 16px rgba(255, 0, 0, 0.4) !important;
-    transform: scale(1.02);
+    background-color: #f8f9fa;
+    border-color: #333333;
   }
   .send-area:active {
-    transform: translateY(2px) scale(0.98);
-    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4) !important;
+    transform: translateY(1px);
+  }
+  .send-area.sent {
+    background-color: #e8f5e8;
+    border-color: #28a745;
+    color: #28a745;
   }
 }
 
@@ -161,4 +188,28 @@ h1 {
   position: relative;
   transition: background 0.3s;
   /* mix-blend-mode: multiply는 JSX에서 적용 */
+}
+
+/* 다크 모드 대응 */
+@media (prefers-color-scheme: dark) {
+  h1 {
+    color: #ffffff;
+  }
+  .color-value {
+    color: #ffffff;
+  }
+  .send-area {
+    background-color: #2d2d2d;
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+  .send-area:hover {
+    background-color: #3d3d3d;
+    border-color: #cccccc;
+  }
+  .send-area.sent {
+    background-color: #1a3d1a;
+    border-color: #4caf50;
+    color: #4caf50;
+  }
 }
